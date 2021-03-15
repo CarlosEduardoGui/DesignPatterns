@@ -2,16 +2,14 @@
 
 namespace Domain.Entities
 {
-    public class Cliente
+    public class Cliente : Entidade
     {
-        public Guid Id { get; private set; }
         public string Nome { get; private set; }
         public string Apelido { get; private set; }
         public DateTime DataNascimento { get; private set; }
 
-        public Cliente(Guid? id, string nome, string apelido, DateTime dataNascimento)
+        public Cliente(string nome, string apelido, DateTime dataNascimento)
         {
-            Id = id ?? Guid.NewGuid();
             Nome = nome ?? throw new ArgumentNullException(nameof(nome));
             Apelido = apelido ?? throw new ArgumentNullException(nameof(apelido));
             DataNascimento = dataNascimento > DateTime.Now ?
@@ -22,6 +20,11 @@ namespace Domain.Entities
         public void TrocarApelido(string apelido)
         {
             Apelido = apelido ?? throw new ArgumentNullException(nameof(apelido));
+        }
+
+        public void TrocarNome(string pNome)
+        {
+            Nome = pNome ?? throw new ArgumentException("Nome inválido.");
         }
     }
 }
