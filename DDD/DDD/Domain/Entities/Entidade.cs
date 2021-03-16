@@ -7,11 +7,13 @@ namespace Domain.Entities
 {
     public abstract class Entidade
     {
-        public Guid Id { get; private set; }
+        public Guid? Id { get; protected set; }
 
         public Entidade()
         {
-            Id = Guid.NewGuid();
+            Id = NovoId ? Guid.NewGuid() : Id;
         }
+
+        private bool NovoId => Id == null || Id == Guid.Empty;
     }
 }
