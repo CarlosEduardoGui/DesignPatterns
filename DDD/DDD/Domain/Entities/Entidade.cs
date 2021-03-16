@@ -3,12 +3,15 @@
 /// <summary>
 /// Classe que representa o contrato de Entidade
 /// </summary>
-public abstract class Entidade
+namespace Domain.Entities
 {
-    public Guid Id { get; private set; }
-
-    public Entidade()
+    public abstract class Entidade
     {
-        Id = Guid.NewGuid();
+        public Guid Id { get; private set; }
+
+        public Entidade()
+        {
+            Id = Guid.NewGuid();
+        }
     }
 }
